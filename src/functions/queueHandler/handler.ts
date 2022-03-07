@@ -1,7 +1,7 @@
-import {SQSEvent, SQSRecord} from 'aws-lambda'
+import {SQSEvent} from 'aws-lambda'
 import * as AWS from 'aws-sdk'
-import {middyfy} from '../../libs/lambda'
-import { payload, validatePayload } from '../../libs/interfaces';
+import {middyfy} from '@libs/lambda'
+import { payload, validatePayload } from '@libs/interfaces';
 
 export const handler = middyfy( async (event:SQSEvent) => {
     //validate the inputs

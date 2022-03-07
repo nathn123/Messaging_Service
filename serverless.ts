@@ -5,7 +5,7 @@ import queueHandler from '@functions/queueHandler';
 const serverlessConfiguration: AWS = {
   service: 'messageservice',
   frameworkVersion: '2',
-  plugins: ['serverless-esbuild', 'serverless-apigateway-service-proxy'],
+  plugins: ['serverless-esbuild', 'serverless-apigateway-service-proxy', 'serverless-webpack'],
   provider: {
     name: 'aws',
     region: 'eu-west-2',
@@ -38,12 +38,6 @@ const serverlessConfiguration: AWS = {
         Type: 'AWS::SNS::Topic',
 
       },
-      MessageReceiverGateway: {
-        Type: 'AWS::ApiGateway::RestApi',
-        Properties: {
-          Name: "Message_Gateway"
-        }
-      }
     }
 
   },
@@ -69,6 +63,11 @@ const serverlessConfiguration: AWS = {
         cors: true,
       },
     },
+    webpack: {
+      webpackConfig: 'webpack.config.js',
+      includeModules: false,
+      packager: 'npm',
+    }
   },
 };
 
